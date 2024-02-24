@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Todos List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">Is Done?</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr th:each="todo: ${todos}">
+                    <th scope="row"><span th:text="${todo.id}"></span></th>
+                    <td><span th:text="${todo.name}"></span></td>
+                    <td>
+                        <span th:text="${todo.startDate}"></span>
+                    </td>
+                    <td><span th:text="${todo.isDone}"></span></td>
+                    <td>
+                        <a th:href="@{/edit-todo/{id}(id=${todo.id})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/delete-todo/{id}(id=${todo.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="add-todo" class="btn btn-success">Add todo</a>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
